@@ -1,0 +1,10 @@
+#combining data with pandas =
+
+import pandas as pd
+happiness2015 = pd.read_csv("World_Happiness_2015.csv")
+happiness2016 = pd.read_csv("World_Happiness_2016.csv")
+happiness2017 = pd.read_csv("World_Happiness_2017.csv")
+
+happiness2015['Year'] = 2015
+happiness2016['Year'] = 2016
+happiness2017['Year'] = 2017
