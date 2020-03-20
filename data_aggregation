@@ -28,3 +28,10 @@ equal = north_america == na_group
 grouped = happiness2015.groupby('Region')
 
 means = grouped.mean()
+
+# Aggregating Specific Columns with groupby
+grouped = happiness2015.groupby('Region')
+
+happy_grouped = grouped['Happiness Score']
+
+happy_mean = happy_grouped.mean()
