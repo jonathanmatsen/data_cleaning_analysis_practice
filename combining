@@ -8,3 +8,11 @@ happiness2017 = pd.read_csv("World_Happiness_2017.csv")
 happiness2015['Year'] = 2015
 happiness2016['Year'] = 2016
 happiness2017['Year'] = 2017
+
+happiness2017.rename(columns={'Happiness.Score': 'Happiness Score'}, inplace=True)
+
+combined = pd.concat([happiness2015, happiness2016, happiness2017])
+
+pivot_table_combined = combined.pivot_table(values='Happiness Score', index='Year', aggfunc = np.mean)
+
+pivot_table_combined.plot(kind='barh', title='Mean Happiness Scores by Year', xlim=(0, 10))
