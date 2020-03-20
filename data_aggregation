@@ -53,3 +53,10 @@ pv_happiness = happiness2015.pivot_table(values='Happiness Score', index='Region
 pv_happiness.plot(kind='barh', title='Mean Happiness Scores by Region', xlim=(0, 10), legend=False)
 
 world_mean_happiness = happiness2015['Happiness Score'].mean()
+
+# Aggregating Multiple Columns and Functions with Pivot Tables
+
+happy_region = happiness2015.groupby('Region')
+grouped = happy_region[('Happiness Score', 'Family')]
+happy_family_stats = grouped.agg([np.min, np.max, np.mean])
+pv_happy_family_stats = happiness2015.pivot_table(values=['Happiness Score', 'Family'], index='Region', margins=True, aggfunc=[np.min, np.max, np.mean])
