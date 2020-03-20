@@ -1,4 +1,4 @@
-# using loops to aggregate data 
+# using loops to aggregate data
 mean_happiness = {}
 
 unique_regions = happiness2015['Region'].unique()
@@ -8,3 +8,9 @@ for r in unique_regions:
     region_mean = region_group['Happiness Score'].mean()
 
     mean_happiness[r] = region_mean
+
+# creating group by objects
+
+grouped = happiness2015.groupby('Region')
+
+aus_nz = grouped.get_group('Australia and New Zealand')
