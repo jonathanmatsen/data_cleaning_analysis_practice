@@ -35,3 +35,5 @@ grouped = happiness2015.groupby('Region')
 happy_grouped = grouped['Happiness Score']
 
 happy_mean = happy_grouped.mean()
+
+# Intro to agg() method
