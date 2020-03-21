@@ -38,3 +38,14 @@ economy_apply = happiness2015['Economy'].apply(label)
 factors = ['Economy', 'Family', 'Health', 'Freedom', 'Trust', 'Generosity']
 
 factors_impact = happiness2015[factors].applymap(label)
+
+#apply functions along an axis using df.apply() method
+
+def v_counts(col):
+    num = col.value_counts()
+    den = col.size
+    pct = num/den
+
+    return pct
+
+v_counts_pct = factors_impact.apply(v_counts)
