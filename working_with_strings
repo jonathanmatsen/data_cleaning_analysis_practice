@@ -21,3 +21,8 @@ print(merged['Currency Apply'].head())
 merged['Currency Vectorized'] = merged['CurrencyUnit'].str.split().str.get(-1)
 
 print(merged['Currency Vectorized'].head())
+
+#explore missing values
+lengths = merged['CurrencyUnit'].str.len()
+
+value_counts = lengths.value_counts(dropna=False)
