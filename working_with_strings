@@ -6,3 +6,12 @@ col_renaming = {'SourceOfMostRecentIncomeAndExpenditureData': 'IESurvey'}
 merged = pd.merge(left=happiness2015, right=world_dev, how='left', left_on='Country', right_on='ShortName')
 
 merged = merged.rename(col_renaming, axis=1)
+
+#use apply to transform strings
+
+def extract_last_word(element):
+   return str(element).split()[-1]
+
+merged['Currency Apply'] = merged['CurrencyUnit'].apply(extract_last_word)
+
+print(merged['Currency Apply'].head())
