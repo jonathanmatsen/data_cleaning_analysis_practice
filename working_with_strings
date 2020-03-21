@@ -47,3 +47,9 @@ print(merged_national_accounts.head())
 pattern =r"([1-2][0-9]{3})"
 
 years = merged['SpecialNotes'].str.extract(pattern)
+
+#return extracted substring results as a dataframe
+
+pattern = r"([1-2][0-9]{3})"
+
+years = merged['SpecialNotes'].str.extract(pattern, expand=True)
