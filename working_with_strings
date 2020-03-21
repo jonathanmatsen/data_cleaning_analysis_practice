@@ -53,3 +53,13 @@ years = merged['SpecialNotes'].str.extract(pattern)
 pattern = r"([1-2][0-9]{3})"
 
 years = merged['SpecialNotes'].str.extract(pattern, expand=True)
+
+#extract all matches of pattern from series
+
+pattern = r"(?P<Years>[1-2][0-9]{3})"
+
+years = merged['IESurvey'].str.extractall(pattern)
+
+value_counts = years['Years'].value_counts()
+
+print(value_counts)
