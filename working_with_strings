@@ -15,3 +15,9 @@ def extract_last_word(element):
 merged['Currency Apply'] = merged['CurrencyUnit'].apply(extract_last_word)
 
 print(merged['Currency Apply'].head())
+
+# vectorized string methods
+
+merged['Currency Vectorized'] = merged['CurrencyUnit'].str.split().str.get(-1)
+
+print(merged['Currency Vectorized'].head())
