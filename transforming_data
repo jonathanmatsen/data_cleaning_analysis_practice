@@ -2,3 +2,17 @@
 mapping = {'Economy (GDP per Capita)': 'Economy', 'Health (Life Expectancy)': 'Health', 'Trust (Government Corruption)': 'Trust' }
 
 happiness2015 = happiness2015.rename(mapping, axis=1)
+
+# map and apply methods
+
+def label(element):
+    if element > 1:
+        return 'High'
+    else:
+        return 'Low'
+
+economy_impact_map = happiness2015['Economy'].map(label)
+
+economy_impact_apply = happiness2015['Economy'].apply(label)
+
+equal = economy_impact_map.equals(economy_impact_apply)
