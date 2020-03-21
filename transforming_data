@@ -26,3 +26,15 @@ def label(element, x):
         return 'Low'
 
 economy_impact_apply = happiness2015['Economy'].apply(label, x=0.8)
+
+# multiple columns with applymap
+
+def label(element):
+    if element > 1:
+        return 'High'
+    else:
+        return 'Low'
+economy_apply = happiness2015['Economy'].apply(label)
+factors = ['Economy', 'Family', 'Health', 'Freedom', 'Trust', 'Generosity']
+
+factors_impact = happiness2015[factors].applymap(label)
