@@ -33,3 +33,12 @@ pattern = r"[Nn]ational accounts"
 national_accounts = merged['SpecialNotes'].str.contains(pattern)
 
 print(national_accounts.head())
+
+pattern = r"[Nn]ational accounts"
+
+national_accounts = merged['SpecialNotes'].str.contains(pattern, na=False)
+
+merged_national_accounts = merged[national_accounts]
+
+print(merged_national_accounts.head())
+                                         
