@@ -59,3 +59,12 @@ def percentages(col):
     return div * 100
 
 factor_percentages = happiness2015[factors].apply(percentages)
+
+#reshaping data with the melt() functions
+
+main_cols = ['Country', 'Region', 'Happiness Rank', 'Happiness Score']
+factors = ['Economy', 'Family', 'Health', 'Freedom', 'Trust', 'Generosity', 'Dystopia Residual']
+
+melt = pd.melt(happiness2015, id_vars=main_cols, value_vars=factors)
+
+melt['Percentage'] = round(100*(melt.value/melt['Happiness Score']), 2)
