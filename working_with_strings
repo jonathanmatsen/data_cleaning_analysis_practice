@@ -41,4 +41,9 @@ national_accounts = merged['SpecialNotes'].str.contains(pattern, na=False)
 merged_national_accounts = merged[national_accounts]
 
 print(merged_national_accounts.head())
-                                         
+
+#extract substring from series
+
+pattern =r"([1-2][0-9]{3})"
+
+years = merged['SpecialNotes'].str.extract(pattern)
