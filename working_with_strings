@@ -1,0 +1,8 @@
+#working with strings
+
+world_dev = pd.read_csv("World_dev.csv")
+col_renaming = {'SourceOfMostRecentIncomeAndExpenditureData': 'IESurvey'}
+
+merged = pd.merge(left=happiness2015, right=world_dev, how='left', left_on='Country', right_on='ShortName')
+
+merged = merged.rename(col_renaming, axis=1)
