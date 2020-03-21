@@ -26,3 +26,10 @@ print(merged['Currency Vectorized'].head())
 lengths = merged['CurrencyUnit'].str.len()
 
 value_counts = lengths.value_counts(dropna=False)
+
+#finding specific words
+pattern = r"[Nn]ational accounts"
+
+national_accounts = merged['SpecialNotes'].str.contains(pattern)
+
+print(national_accounts.head())
