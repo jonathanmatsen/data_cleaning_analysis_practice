@@ -22,3 +22,11 @@ happiness2015.columns = happiness2015.columns.str.replace('.', ' ').str.replace(
 combined = pd.concat([happiness2015, happiness2016, happiness2017], ignore_index=True)
 
 missing = combined.isnull().sum()
+
+#create heatmap to visualize missing values
+
+import seaborn as sns
+combined_updated = combined.set_index('YEAR')
+sns.heatmap(combined_updated.isnull(), cbar=False)
+
+# confirm missing vales after looking at heatmap output
