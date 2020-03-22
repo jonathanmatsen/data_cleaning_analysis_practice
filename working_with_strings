@@ -73,3 +73,11 @@ years = merged['IESurvey'].str.extractall(pattern)
 first_two_year = years['First_Year'].str[0:2]
 
 years['Second_Year'] = first_two_year + years['Second_Year']
+
+# clean incomegroup column
+
+merged['IncomeGroup'] = merged['IncomeGroup'].str.replace(' income', '').str.replace(':', '').str.upper()
+
+pv_incomes = merged.pivot_table(index='IncomeGroup', values='Happiness Score')
+
+pv_incomes.plot(kind='bar', rot=30, ylim=(0, 10))
