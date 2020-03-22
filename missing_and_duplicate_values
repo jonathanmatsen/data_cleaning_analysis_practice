@@ -70,3 +70,13 @@ print(combined.notnull().sum().sort_values())
 
 combined = combined.dropna(thresh=159, axis=1)
 missing = combined.isnull().sum()
+
+#handle missing values with imputation
+
+happiness_mean = combined['HAPPINESS SCORE'].mean()
+
+print(happiness_mean)
+
+combined['HAPPINESS SCORE UPDATED'] = combined['HAPPINESS SCORE'].fillna(happiness_mean)
+
+print(combined['HAPPINESS SCORE UPDATED'].mean())
