@@ -63,3 +63,10 @@ columns_to_drop = ['LOWER CONFIDENCE INTERVAL', 'STANDARD ERROR', 'UPPER CONFIDE
 combined = combined.drop(columns_to_drop, axis=1)
 
 missing = combined.isnull().sum()
+
+# hangle missing values by dropping columns continued
+
+print(combined.notnull().sum().sort_values())
+
+combined = combined.dropna(thresh=159, axis=1)
+missing = combined.isnull().sum()
