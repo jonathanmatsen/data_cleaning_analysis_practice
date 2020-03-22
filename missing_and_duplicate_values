@@ -29,4 +29,8 @@ import seaborn as sns
 combined_updated = combined.set_index('YEAR')
 sns.heatmap(combined_updated.isnull(), cbar=False)
 
-# confirm missing vales after looking at heatmap output
+# confirm missing values in region column after looking at heatmap output
+
+regions_2017 = combined[combined['YEAR'] == 2017]['REGION']
+
+missing = regions_2017.isnull().sum()
