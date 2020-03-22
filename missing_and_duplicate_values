@@ -49,3 +49,9 @@ combined['COUNTRY'] = combined['COUNTRY'].str.upper()
 dups = combined.duplicated(['COUNTRY', 'YEAR'])
 
 print(combined[dups])
+
+#correct duplicate values
+
+combined['COUNTRY'] = combined['COUNTRY'].str.upper()
+
+combined = combined.drop_duplicates(['COUNTRY', 'YEAR'])
