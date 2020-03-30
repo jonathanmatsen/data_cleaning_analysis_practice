@@ -1,0 +1,14 @@
+import pandas as pd
+mvc = pd.read_csv("nypd_mvc_2018.csv")
+
+null_counts = mvc.isnull().sum()
+
+#verifying column totals
+killed_cols = [col for col in mvc.columns if 'killed' in col]
+killed = mvc[killed_cols].copy()
+
+killed_manual_sum = killed[['pedestrians_killed', 'cyclist_killed', 'motorist_killed']].sum(axis=1)
+
+killed_mask = killed_manual_sum != killed['total_killed']
+
+killed_non_eq = killed[killed_mask]
