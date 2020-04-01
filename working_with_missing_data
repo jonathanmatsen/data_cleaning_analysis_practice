@@ -12,3 +12,11 @@ killed_manual_sum = killed[['pedestrians_killed', 'cyclist_killed', 'motorist_ki
 killed_mask = killed_manual_sum != killed['total_killed']
 
 killed_non_eq = killed[killed_mask]
+
+# Create an injured dataframe and manually sum values
+injured = mvc[[col for col in mvc.columns if 'injured' in col]].copy()
+injured_manual_sum = injured.iloc[:,:3].sum(axis=1)
+
+injured['total_injured'] = injured['total_injured'].mask(injured['total_injured'].isnull(), injured_manual_sum)
+
+injured['total_injured'] = injured['total_injured'].mask(injured['total_injured'] != injured_manual_sum, np.nan)
