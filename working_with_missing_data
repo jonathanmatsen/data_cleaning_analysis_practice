@@ -92,7 +92,7 @@ vehicles_1d = vehicles.stack()
 
 top10_vehicles = vehicles_1d.value_counts().head(10)
 
-#filling unknown values with a placeholder 
+#filling unknown values with a placeholder
 
 def summarize_missing():
     v_missing_data = []
@@ -122,3 +122,15 @@ for v in range(1,6):
     mvc[c_col] = mvc[c_col].mask(c_missing_mask, "Unspecified")
 
 summary_after = summarize_missing()
+
+#imputing location data
+sup_data = pd.read_csv('supplemental_data.csv')
+
+location_cols = ['location', 'on_street', 'off_street', 'borough']
+null_before = mvc[location_cols].isnull().sum()
+
+for col in location_cols:
+    mvc[col] = mvc[col].mask(mvc[col].isnull(), sup_data[col])
+
+null_after = mvc[location_cols].isnull().sum()
+    
