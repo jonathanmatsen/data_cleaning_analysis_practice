@@ -91,3 +91,34 @@ vehicles = mvc[v_cols]
 vehicles_1d = vehicles.stack()
 
 top10_vehicles = vehicles_1d.value_counts().head(10)
+
+#filling unknown values with a placeholder 
+
+def summarize_missing():
+    v_missing_data = []
+
+    for v in range(1,6):
+        v_col = 'vehicle_{}'.format(v)
+        c_col = 'cause_vehicle_{}'.format(v)
+
+        v_missing = (mvc[v_col].isnull() & mvc[c_col].notnull()).sum()
+        c_missing = (mvc[c_col].isnull() & mvc[v_col].notnull()).sum()
+
+        v_missing_data.append([v, v_missing, c_missing])
+
+    col_labels = columns=["vehicle_number", "vehicle_missing", "cause_missing"]
+    return pd.DataFrame(v_missing_data, columns=col_labels)
+
+summary_before = summarize_missing()
+
+for v in range(1,6):
+    v_col = 'vehicle_{}'.format(v)
+    c_col = 'cause_vehicle_{}'.format(v)
+
+    v_missing_mask = (mvc[v_col].isnull() & mvc[c_col].notnull())
+    c_missing_mask = (mvc[c_col].isnull() & mvc[v_col].notnull())
+
+    mvc[v_col] = mvc[v_col].mask(v_missing_mask, "Unspecified")
+    mvc[c_col] = mvc[c_col].mask(c_missing_mask, "Unspecified")
+
+summary_after = summarize_missing()
